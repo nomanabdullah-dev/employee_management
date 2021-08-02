@@ -3,8 +3,8 @@
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Users</h1>
-    <a href="{{ route('users.create') }}" class="btn btn-success float-right">Create User</a>
+    <h1 class="h3 mb-0 text-gray-800">States</h1>
+    <a href="{{ route('states.create') }}" class="btn btn-success float-right">Create State</a>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -16,7 +16,7 @@
                 </div>
             @endif
         </div>
-        <form method="GET" action="{{ route('users.index') }}">
+        <form method="GET" action="{{ route('states.index') }}">
             <div class="form-row align-items-center">
               <div class="col-auto">
                 <label class="sr-only" for="inlineFormInput">Name</label>
@@ -31,24 +31,24 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Country code</th>
+                    <th scope="col">State name</th>
                     <th scope="col">Manage</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($states as $state)
                     <tr>
-                        <th scope="row">{{ $user->id }}</th>
-                        <td>{{ $user->username }}</td>
-                        <td>{{ $user->email }}</td>
+                        <th scope="row">{{ $state->id }}</th>
+                        <td>{{ $state->country->country_code }}</td>
+                        <td>{{ $state->name }}</td>
                         <td>
-                            <a class="btn btn-warning btn-sm" href="{{ route('users.edit', $user->id) }}">Edit</a>
+                            <a class="btn btn-warning btn-sm" href="{{ route('states.edit', $state->id) }}">Edit</a>
 
-                            <form method="POST" action="{{ route('users.destroy', $user->id) }}">
+                            <form method="POST" action="{{ route('states.destroy', $state->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger btn-sm" href="{{ route('users.destroy', $user->id) }}">Delete</button>
+                                <button class="btn btn-danger btn-sm" href="{{ route('states.destroy', $state->id) }}">Delete</button>
                             </form>
                         </td>
                     </tr>
